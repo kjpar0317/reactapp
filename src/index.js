@@ -1,12 +1,24 @@
+/* 설치 순서
+npm install history
+npm install react-router
+npm install react-router-dom
+npm install connected-react-router
+*/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import createHistory from 'history/createBrowserHistory'; //npm install --save history으로 설치
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; //npm install --save react-router-dom
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import indexRoutes from "routes/index.jsx";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+    <Router history={createHistory}>
+        <Switch>
+            {indexRoutes.map((prop, key) => {
+                return <Route path={prop.path} component={prop.component} key={key} />;
+            })}
+        </Switch>
+
+    </Router>,
+    document.getElementById("root")
+);
