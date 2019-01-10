@@ -3,8 +3,8 @@ var mysql = require('mysql');
 module.exports = function () {
     var pool = mysql.createPool({
         host: "reactapp.cdec2ityzhyk.ap-northeast-2.rds.amazonaws.com",
-        user: "kjpar0317",
-        password: "kjpar1703!",
+        user: "",
+        password: "!",
         database: "reactapp"
     });
 
