@@ -4,20 +4,15 @@ import PropTypes from "prop-types";
 //import ChartistGraph from "react-chartist";
 // @material-ui/core
 import withStyles from "@material-ui/core/styles/withStyles";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
+
 // core components
+import Table from "components/Table/Table.jsx";
+import Card from "components/Card/Card.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
 
 import { bugs, website, server } from "variables/general.jsx";
 
@@ -37,9 +32,32 @@ class MainPage extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
-
-            </div>
+            <GridContainer>
+                <GridItem xs={12} sm={12} md={12}>
+                    <Card>
+                        <CardHeader color="primary">
+                            <h4 className={classes.cardTitleWhite}>테스트 게시판</h4>
+                            <p className={classes.cardCategoryWhite}>
+                                nodejs를 사용한 데이터 가져오기
+                            </p>
+                        </CardHeader>
+                        <CardBody>
+                            <Table
+                                tableHeaderColor="primary"
+                                tableHead={["Name", "Country", "City", "Salary"]}
+                                tableData={[
+                                    ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
+                                    ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
+                                    ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
+                                    ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
+                                    ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
+                                    ["Mason Porter", "Chile", "Gloucester", "$78,615"]
+                                ]}
+                            />
+                        </CardBody>
+                    </Card>
+                </GridItem>
+            </GridContainer>
         );
     }
 }
