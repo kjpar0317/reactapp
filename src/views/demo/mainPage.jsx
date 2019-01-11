@@ -20,8 +20,29 @@ import mainStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.
 
 class MainPage extends React.Component {
     state = {
-        value: 0
+        value : 0,
+        data : []
     };
+    componentDidMount(){
+        fetch('http://localhost:3001/board',{
+            method: 'post',
+            dataType: 'json',
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            response.json().then((responseData) => {
+                let tdata = [];
+                responseData.userData.forEach(data => {
+                    tdata.push([data.name, data.country, data.city, data.salary]);
+                });
+                this.setState({data: tdata});
+            }).catch((error) => {
+                console.log('Error fetching man',error);
+            });
+        });
+    }
     handleChange = (event, value) => {
         this.setState({ value });
     };
@@ -31,6 +52,7 @@ class MainPage extends React.Component {
     };
     render() {
         const { classes } = this.props;
+
         return (
             <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
@@ -45,14 +67,7 @@ class MainPage extends React.Component {
                             <Table
                                 tableHeaderColor="primary"
                                 tableHead={["Name", "Country", "City", "Salary"]}
-                                tableData={[
-                                    ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-                                    ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                                    ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                                    ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                                    ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                                    ["Mason Porter", "Chile", "Gloucester", "$78,615"]
-                                ]}
+                                tableData={this.state.data}
                             />
                         </CardBody>
                     </Card>
