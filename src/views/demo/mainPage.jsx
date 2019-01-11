@@ -35,7 +35,7 @@ class MainPage extends React.Component {
             response.json().then((responseData) => {
                 let tdata = [];
                 responseData.userData.forEach(data => {
-                    tdata.push([data.name, data.country, data.city, data.salary]);
+                    tdata.push([data.name, data.country, data.city, '$' + data.salary]);
                 });
                 this.setState({data: tdata});
             }).catch((error) => {
