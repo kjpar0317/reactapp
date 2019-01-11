@@ -24,7 +24,7 @@ class MainPage extends React.Component {
         data : []
     };
     componentDidMount(){
-        fetch('http://localhost:3001/board',{
+        fetch('http://13.209.215.33:3001/board',{
             method: 'post',
             dataType: 'json',
             headers:{
