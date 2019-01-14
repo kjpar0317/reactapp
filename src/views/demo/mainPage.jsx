@@ -13,17 +13,30 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
-
-import { bugs, website, server } from "variables/general.jsx";
+import BoardInputFormDialog from "components/Dialog/BoardInputFormDialog.jsx";
 
 import mainStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 class MainPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSaveAfter = this.handleSaveAfter.bind(this);
+    };
+
+    handleSaveAfter() {
+        this.selectBoard();
+        //this.setState({data: this.state.data.concat({id: prop.id, name: prop.name, country: prop.country, city : prop.city, salary : prop.salary})});
+    };
+
     state = {
-        value : 0,
         data : []
     };
     componentDidMount(){
+        this.selectBoard();
+    };
+
+    selectBoard = () => {
         fetch('http://13.209.215.33:3001/board',{
             method: 'post',
             dataType: 'json',
@@ -42,14 +55,8 @@ class MainPage extends React.Component {
                 console.log('Error fetching man',error);
             });
         });
-    }
-    handleChange = (event, value) => {
-        this.setState({ value });
     };
 
-    handleChangeIndex = index => {
-        this.setState({ value: index });
-    };
     render() {
         const { classes } = this.props;
 
@@ -72,7 +79,9 @@ class MainPage extends React.Component {
                         </CardBody>
                     </Card>
                 </GridItem>
+                <BoardInputFormDialog handleSaveAfter={this.handleSaveAfter}/>
             </GridContainer>
+
         );
     }
 }
