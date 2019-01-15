@@ -8,20 +8,20 @@ import BigSchedulerPage from "views/demo/scheduler.jsx";
 
 const mainRoutes = [
     {
+        path: "/main",
+        sidebarName: "Main",
+        navbarName: "Main",
+        icon: BoardIcon,
+        component: MainPage
+    },
+    {
         path: "/scheduler",
         sidebarName: "Scheduler",
         navbarName: "Scheduler",
         icon: CalendarTodayIcon,
         component: BigSchedulerPage
     },
-    {
-      path: "/",
-      sidebarName: "Main",
-      navbarName: "Main",
-      icon: BoardIcon,
-      component: MainPage
-    },
-    //  { redirect: true, path: "/", to: "/main", navbarName: "Redirect" }
+    { redirect: true, path: "/", to: "/main", navbarName: "Redirect" }
 ];
 
 export default mainRoutes;
