@@ -21,12 +21,13 @@
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.4.0",
     "eslint-config-react-app": "^3.0.6",
     "eslint-loader": "2.1.1",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
-    "express": "4.16.4",
     "file-loader": "2.0.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
@@ -38,7 +39,7 @@
     "jest-resolve": "23.6.0",
     "material-ui": "^1.0.0-beta.47",
     "mini-css-extract-plugin": "0.4.3",
-    "mysql": "2.16.0",
+    "moment": "^2.23.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.1.0",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -47,6 +48,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
+    "react-big-calendar": "^0.20.2",
     "react-dev-utils": "^7.0.1",
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
@@ -67,7 +69,15 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": ["react-app", "prettier"],
+    "rules": {
+      "react/prefer-stateless-function": 0,
+      "react/jsx-filename-extension": 0,
+      "react/jsx-one-expression-per-line": 0
+    },
+    "env": {
+      "browser": true
+    }
   },
   "browserslist": [
     ">0.2%",

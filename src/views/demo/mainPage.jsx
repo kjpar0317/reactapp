@@ -52,7 +52,7 @@ class MainPage extends React.Component {
                 });
                 this.setState({data: tdata});
             }).catch((error) => {
-                console.log('Error fetching man',error);
+                console.log('Error fetching board',error);
             });
         });
     };
