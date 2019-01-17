@@ -30,6 +30,3 @@ npm install moment --save
 #### 개발 편이성
 npm install eslint-config-airbnb 귀챠늠
 npm install eslint-config-prettier
-
-#### 로거
-npm install react-console-logger
