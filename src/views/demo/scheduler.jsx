@@ -21,23 +21,41 @@ class BigSchedulerPage extends React.Component {
     state = {
         events: [
           {
+            id : 1,
             start: new Date(),
             end: new Date(moment().add(1, "days")),
             title: "Some title1",
-            resource: "A"
+            resource: "A",
+            //color: '#3174ad'
+            classname: 'rbc-event',
+            style: 'background-color:#3174ad'
           },
           {
-            start: new Date(),
-            end: new Date(moment().add(1, "days")),
+            id : 2,
+            start: new Date(moment().subtract(6, "days")),
+            end: new Date(moment().subtract(10, "days")),
             title: "Some title2",
-            resource: "B"
+            resource: "B",
+            //className: '#ad314f'
+            classname: 'rbc-event2',
+            style: 'background-color:#ad314f'
+          },
+          {
+            id : 3,
+            start: new Date(moment().add(1, "days")),
+            end: new Date(moment().add(4, "days")),
+            title: "Some title3",
+            resource: "C",
+            //className: '#ad314f'
+            classname: 'rbc-event'
           }
         ],
+        selectedIdx : 0
     };
 
-    onSelectEvent = ({ title, start, end, allDay, resource  }) => {
-        console.log("onSelectEvent" + resource);
-
+    onSelectEvent = ({ title, start, end, allDay, resource, id }) => {
+        console.log("onSelectEvent resource : " + resource);
+        console.log("onSelectEvent idx : " + id);
     
         // change the border color just for fun
         //$(this).css('border-color', 'red');
@@ -47,24 +65,24 @@ class BigSchedulerPage extends React.Component {
         console.log("onDoubleClickEvent" + title);
     };
 
-    onSelectSlot = ({ title, start, end, allDay, resource }) => {
-        console.log("onSelectSlot" + resource);
+    onSelectSlot = ({ title, start, end, allDay, resource, id }) => {
+        console.log("onSelectSlot idx : " + id);
     };
 
     // 일정 리사이즈
-    onEventResize = ({ title, start, end, allDay }) => {
+    onEventResize = ({ event, start, end, allDay, id }) => {
         this.setState(state => {
-            state.events[0].start = start;
-            state.events[0].end = end;
+            state.events[event.id - 1].start = start;
+            state.events[event.id - 1].end = end;
             return { events: state.events };
         });
     };
 
     // 일정 DROP 시
-    onEventDrop = ({ event, start, end, allDay }) => {
+    onEventDrop = ({ event, start, end, allDay, id }) => {
         this.setState(state => {
-            state.events[0].start = start;
-            state.events[0].end = end;
+            state.events[event.id - 1].start = start;
+            state.events[event.id - 1].end = end;
             return { events: state.events };
         });
     };
